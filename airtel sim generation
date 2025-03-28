@@ -1,0 +1,54 @@
+import random
+
+def generate_airtel_number():
+    """
+    Generate a random 10-digit Airtel-like mobile number.
+
+    Returns:
+        str: A randomly generated Airtel-like mobile number.
+    """
+    # List of common Airtel prefixes
+    prefixes = ["9849", "9000", "9908", "9700", "8801"]
+    # Select a random prefix
+    prefix = random.choice(prefixes)
+    # Generate the remaining 6 digits randomly
+    suffix = ''.join(random.choices('0123456789', k=6))
+    # Combine prefix and suffix to form the full mobile number
+    return prefix + suffix
+
+def generate_multiple_airtel_numbers(count):
+    """
+    Generate multiple random Airtel-like mobile numbers.
+
+    Args:
+        count (int): Number of mobile numbers to generate.
+
+    Returns:
+        list: A list containing the generated mobile numbers.
+    """
+    return [generate_airtel_number() for _ in range(count)]
+
+def main():
+    """
+    Main function to generate and display random Airtel-like mobile numbers.
+    """
+    try:
+        # Prompt user for the number of mobile numbers to generate
+        num = int(input("Enter the number of Airtel mobile numbers to generate: "))
+        if num <= 0:
+            print("Please enter a positive integer.")
+            return
+
+        # Generate the mobile numbers
+        mobile_numbers = generate_multiple_airtel_numbers(num)
+
+        # Display the generated mobile numbers
+        print("\nGenerated Airtel Mobile Numbers:")
+        for idx, number in enumerate(mobile_numbers, start=1):
+            print(f"{idx}: {number}")
+
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+
+if __name__ == "__main__":
+    main()
